@@ -78,7 +78,7 @@ Free service includes:
 = Data Protection =
 
 
-The video’s that are captured remain your property.  Upon cancellation of your account the videos will be permanently deleted. We do not use your data in any way.  We do not share your data with anyone.  We are not affiliated nor do we subscribe to any banner marketing or adsence like service. Our servers are PCI compliant and all usernames and passwords are encrypted.
+The videos that are captured remain your property.  Upon cancellation of your account the videos will be permanently deleted. We do not use your data in any way.  We do not share your data with anyone.  We are not affiliated nor do we subscribe to any banner marketing or adsence like service. Our servers are PCI compliant and all usernames and passwords are encrypted.
 
 
 = Get Involved =
@@ -93,13 +93,13 @@ We would love for developers and end users to provide feedback on ways in which 
 
 
 1.	Click 'Plugins' admin menu
-2.	Click on  ‘Add New'
+2.	Click on  'Add New'
 3.	Search for 'Vantage Point'
 4.	Install Plugin
-5.	Activate ‘Vantage Point’.  This creates a admin menu called Vantage Point.
+5.	Activate 'Vantage Point'.  This creates a admin menu called Vantage Point.
 6.	Click on the Vantage Point admin menu icon.
 7.	You will be presented with a free signup page.
-8.	Fill in the form and click on ‘OK, Create My Account’ button.
+8.	Fill in the form and click on 'OK, Create My Account' button.
 9.	The form will change to a ‘Click here to finish setup’ button, when this appears click it.
 10.	The page will reload and present you with 
 
@@ -108,13 +108,13 @@ We would love for developers and end users to provide feedback on ways in which 
 
 
 1.	Download VantagePoint.zip.
-2.	Unzip the file, creates a ‘Vantage Point’ folder.
+2.	Unzip the file, creates a 'Vantage Point' folder.
 3.	Upload the folder to your 'wp-content/plugins' directory, using your preferred method (ftp, sftp, etc).
-4.	Activate ‘Vantage Point’ from your Plugins 
+4.	Activate 'Vantage Point' from your Plugins 
 5.	Click on the Vantage Point admin menu icon.
 6.	You will be presented with a free signup page.
-7.	Fill in the form and click on ‘OK, Create My Account’ button.
-8.	The form will change to ‘Click here to finish setup’ button, when this appears click it.
+7.	Fill in the form and click on 'OK, Create My Account' button.
+8.	The form will change to 'Click here to finish setup' button, when this appears click it.
 9.	The page will reload and present you with the Vantage Point dashboard, from here you can view and share video recordings.
 
 
@@ -165,7 +165,7 @@ There is no limitation on sharing.
 
 = Can the video be modified after it has been created? =
 
-No, the video cannot be modified. It records the actual screens and mouse movement’s key presses etc. This cannot be altered in anyway. 
+No, the video cannot be modified. It records the actual screens and mouse movements key presses etc. This cannot be altered in anyway. 
 
 
 
@@ -184,7 +184,7 @@ Sending an order confirmation after the sale is normal practice the issue is tha
 
 
 
-“A true real time record of events, leading to and including the transaction between all parties” 
+'A true real time record of events, leading to and including the transaction between all parties' 
 
 
 
@@ -207,7 +207,7 @@ The videos will be marked for deletion which runs every 48 hours. We leave a two
 
 Version 1.0.0
 
-•	First Release of Vantage Point for WooCommerce running on Wordpress
+- First Release of Vantage Point for WooCommerce running on Wordpress
 
 
 == Upgrade Notice ==
