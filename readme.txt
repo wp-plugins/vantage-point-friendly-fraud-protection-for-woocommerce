@@ -100,7 +100,7 @@ We would love for developers and end users to provide feedback on ways in which 
 6.	Click on the Vantage Point admin menu icon.
 7.	You will be presented with a free signup page.
 8.	Fill in the form and click on 'OK, Create My Account' button.
-9.	The form will change to a ‘Click here to finish setup’ button, when this appears click it.
+9.	The form will change to a 'Click here to finish setup' button, when this appears click it.
 10.	The page will reload and present you with 
 
 
