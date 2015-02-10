@@ -26,7 +26,7 @@ function createVantageAccount() {
 		
 	} else if (password2=='' || password2.length<4 || password2.length>15){
 		//alert ("Please enter re-password between 4 to 15 characters long.");
-		document.getElementById("validate").innerHTML = "Please enter re-password between 4 to 15 characters long.";
+		document.getElementById("validate").innerHTML = "Please re-enter password.";
 		return false;
 	
 	} else if (password1 != password2){
@@ -80,11 +80,28 @@ return true;
 }
 
 
+function seal_disable(){
+document.seal_remove.submit();
+}
+
+
 function load_dashboard(){
 	location.reload(false);
 }
+function seal_dashboard(){
+
+	document.getElementById('seal').style.display='block';
+	document.getElementById('dashboard').style.display='none';
+}
+function seal_dashboard2(){
+
+	document.getElementById('seal').style.display='none';
+	document.getElementById('dashboard').style.display='block';
+}
 function load_dashboard2(){
-	location.reload(true);
+	//location.reload(false);
+	//location.href='#';
+	location.reload();
 }
 function new_user(){
 	document.getElementById('create_form').style.display='block';
@@ -104,10 +121,16 @@ function forgot(){
 	document.getElementById('forgot_form').style.display='block';
 }
 function try_again(){
-	//alert ("abc");
+
 	document.getElementById('FinishedSignup').style.display='none';
 	document.getElementById('create_form').style.display='none';
 	document.getElementById('tbl_form').style.display='block';
 	document.getElementById('existing_form').style.display='block';
 	document.getElementById('forgot_form').style.display='none';
+}
+
+function btn_radio(a) {
+
+		document.getElementById("sel_img").src= "http://www.getvantagepoint.com/wp_dashboard/images/vp_seal"+a+".png";
+		document.getElementById("img_id").innerHTML = a;
 }

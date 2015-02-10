@@ -4,7 +4,7 @@ Tags: friendly fraud, fraud, payment protection, vantage point, maxmind, maxmind
 Donate link: https://www.2checkout.com/checkout/purchase?sid=202346321&quantity=1&product_id=11
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: trunk
+Stable tag: 1.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -205,11 +205,22 @@ The videos will be marked for deletion which runs every 48 hours. We leave a two
 
 == Changelog ==
 
-Version 1.0.0
+= Version 1.0.1 =
+
+- Updated Speed for capturing mouse data
+- Added Vantage Point Site Seal feature
+- Added robots blocking couter measure to stop robots from being recorded
+- More Secure API for contecting to database
+
+
+= Version 1.0.0 =
 
 - First Release of Vantage Point for WooCommerce running on Wordpress
 
 
+
+
+
 == Upgrade Notice ==
 
-This is the first release of this plugin for woocommerce friendly fraud protection
+Existing users are all advised to update to this release as soon as possible as it has positive impact on your website performance due to the blocking of robots.

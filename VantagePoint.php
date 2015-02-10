@@ -53,8 +53,13 @@ function VantagePoint_insert_script () {
 	$table_name = $wpdb->prefix . 'vantagepoint';
 	$result     = $wpdb->get_row("SELECT * from  $table_name limit 1");
 	$vantage_id = $result->vantage_id;
+	$vantage_seal = $result->vantage_seal;             
+	$vantage_seal_image = '<div style="max-width:128px;	max-height:63px; margin:30px auto;" ><a href="#" onClick="window.open('."'".'https://s1.getvantagepoint.com/verified/index.php?id='.$vantage_id."'".', '."'".'newwindow'."'".', '."'".'width=620, height=430,scrollbars=yes'."'".'); return false;" rel="nofollow" title="print"><img src="'. plugins_url("/assets/images/vp_seal" .$vantage_seal. ".png" ,  __FILE__) .'" border="0"></a></div>';
+	
+	if ($vantage_seal==0) { $vantage_seal_image=''; }
 
-	echo '<input type="hidden" name="vantage_tracking" id="tracking_id" value="" />
+	echo ''.$vantage_seal_image.'
+	<input type="hidden" name="vantage_tracking" id="tracking_id" value="" />
 		<script type="text/javascript">
 		var _vantage = _vantage || [];
 		var WebsiteID = ' .  $vantage_id . ';
@@ -80,7 +85,8 @@ function VantagePoint_activate(){
       vantage_url varchar(255) DEFAULT NULL,
 	  vantage_api_key varchar(25) DEFAULT NULL,
 	  vantage_sec_key varchar(25) DEFAULT NULL,	  
-      vantage_status tinyint(1) DEFAULT 0,
+      vantage_seal tinyint(1) DEFAULT 0,
+	  vantage_status tinyint(1) DEFAULT 0,
       UNIQUE KEY vantage_id (vantage_id)
     );";
 	
@@ -134,6 +140,7 @@ function encrypt_decrypt($action, $string) {
 
 	global $wpdb;
 	$vantage_id = 0;
+	$version = "1.0.1";
 	$table_name = $wpdb->prefix . 'vantagepoint';
 		
 	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'")==$table_name){ 
@@ -146,9 +153,140 @@ function encrypt_decrypt($action, $string) {
 	}	   
 		
 	if ($vantage_id!=0){
-		$session_data = wp_remote_get('http://www.getvantagepoint.com/wp_dashboard/visitors.php?usr=' . $user_email . '&pwd='.$password."&api_key=".$api_key."&sec_key=".$sec_key);  // send request to get the sessions data
+		$session_data = wp_remote_get('http://www.getvantagepoint.com/wp_dashboard/visitors101.php?usr=' . $user_email . '&pwd='.$password."&api_key=".$api_key."&sec_key=".$sec_key."&version=".$version);  // send request to get the sessions data
 		wp_enqueue_style( 'mystyle', plugins_url('/assets/css/style.css' ,  __FILE__) );
+		wp_enqueue_script( 'myscript', plugins_url('/assets/js/script.js',__FILE__));
 		print($session_data['body']);
+		
+		
+		$this_page = $_SERVER['REQUEST_URI'];
+	 
+		$page = $_POST['page'];
+		
+		
+		if ($page==4){
+
+    $embed = "embed";
+	$website_id  = $_POST['website_id'];
+	
+	if ($_SERVER['HTTPS'] == 'on') { $scheme="https"; } else { $scheme="http"; }
+	
+	$website = $scheme."://".$_SERVER['HTTP_HOST'];
+	$radio    = $_POST['radio'];
+	$url     = "http://s1.getvantagepoint.com/app/framework/wp_protected.php";
+	$response = wp_remote_post(
+            $url,
+            array(
+                'body' => array(
+					'embed'    => $embed,
+                    'radio'    => $radio,
+					'website_id'    => $website_id,
+                    'website'  => $website
+                )
+            )
+        );
+
+	$response=$response['body']; 
+
+	
+	if ($response!=0) {
+	$response = explode ("|", $response);
+	$website_id = $response[0];	
+	$radio = $response[1];	
+$tablename = $wpdb->prefix . "vantagepoint";	
+
+$rows_affected = $wpdb->query(
+                              $wpdb->prepare("
+                                             UPDATE {$tablename}
+                                             SET  vantage_seal = %s
+                                             WHERE vantage_id = $website_id;",
+                                             $radio
+                                             )
+                              );
+			
+		
+	header('Location: #');
+
+		
+	} else {
+		
+	header('Location: #');
+	
+	}
+	
+	
+}
+
+if ($page==5){
+    $embed = "skip";
+	$website_id  = $_POST['website_id'];
+	$url     = "http://s1.getvantagepoint.com/app/framework/wp_protected.php";
+	$response = wp_remote_post(
+            $url,
+            array(
+                'body' => array(
+					'embed'    => $embed,
+					'website_id'    => $website_id
+                )
+            )
+        );
+
+ 
+	$response=$response['body']; 
+	
+	if ($response!=0) {
+		
+	header('Location: #');
+
+		
+	}
+	
+	
+}
+
+
+if ($page==6){
+    $embed = "remove";
+	$website_id  = $_POST['website_id'];
+	$url     = "http://s1.getvantagepoint.com/app/framework/wp_protected.php";
+	$response = wp_remote_post(
+            $url,
+            array(
+                'body' => array(
+					'embed'    => $embed,
+					'website_id'    => $website_id
+                )
+            )
+        );
+
+ 
+	$response=$response['body']; 
+	
+	if ($response!=0) {
+
+$website_id = $response;	
+$tablename = $wpdb->prefix . "vantagepoint";	
+
+$rows_affected = $wpdb->query(
+                              $wpdb->prepare("
+                                             UPDATE {$tablename}
+                                             SET  vantage_seal = %s
+                                             WHERE vantage_id = $website_id;",
+                                             0
+                                             )
+                              );
+		
+	header('Location: #');
+
+		
+	}
+	
+	
+}
+
+		
+		
+		
 	} else {
 		wp_enqueue_style( 'mystyle', plugins_url('/assets/css/style.css' ,  __FILE__) );
 	 
@@ -452,7 +590,6 @@ if ($page==1){
 
 
 if ($page==2){
-	$name    = "Mujtaba Gul";
 	$email   = $_POST['email'];
 	$pwd1    = $_POST['password1'];
 	$website = $_SERVER['HTTP_HOST'];
@@ -462,7 +599,6 @@ if ($page==2){
             $url,
             array(
                 'body' => array(
-                    'name'     => $name,
                     'email'    => $email,
                     'pwd'      => $pwd1,
                     'website'  => $website
@@ -515,7 +651,7 @@ if ($page==2){
 		echo '<div class="form_div" id="FinishedSignup"> 
 	<input type="hidden" name="gvp_response" id="gvp_response" />
 	<div class="txt_sub2">Email or Password is not correct</div>
-	<center><input name="" value="Try Again" type="button" class="form_btn2" onclick="load_dashboard2();" /></center>';
+	<center><a href="'.$this_page.'"><input name="" value="Try Again" type="button" class="form_btn2" /></a></center>';
 	echo '</div>';	
 	
 	}
@@ -549,7 +685,7 @@ if ($page==3){
 	echo '<div class="form_div" id="FinishedSignup"> 
 	<input type="hidden" name="gvp_response" id="gvp_response" />
 	<div class="txt_sub2">OK, email has been sent to '.$email.' please checks in a few moments, also check in the junk folders just in case. </div>
-	<center><input name="" value="Click here" type="button" class="form_btn2" onclick="load_dashboard2();" /></center>';
+	<center><a href="'.$this_page.'"><input name="" value="Click here" type="button" class="form_btn2" /></a></center>';
 	echo '</div>';
 		
 	} else {
@@ -560,17 +696,13 @@ if ($page==3){
 <br/><br/>
 If you cannot remember the email address you can overwrite the email address and password by creating a New Free Account. <br/>
 All  recordings are linked to the your website domain not the individual users. </div>
-	<center><input name="" value="Click here" type="button" class="form_btn2" onclick="load_dashboard2();" /></center>';
+	<center><a href="'.$this_page.'"><input name="" value="Click here" type="button" class="form_btn2" /></a></center>';
 	echo '</div>';
 	
 	}
 	
 	
 }
-
-
-
-
 
 		
 		
