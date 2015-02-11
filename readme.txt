@@ -209,8 +209,8 @@ The videos will be marked for deletion which runs every 48 hours. We leave a two
 
 - Updated Speed for capturing mouse data
 - Added Vantage Point Site Seal feature
-- Added robots blocking couter measure to stop robots from being recorded
-- More Secure API for contecting to database
+- Added robots blocking counter measure to stop robots from being recorded
+- More Secure API for conecting to database
 
 
 = Version 1.0.0 =

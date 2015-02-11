@@ -3,7 +3,7 @@
 Plugin Name: Vantage Point
 Plugin URI: http://www.getvantagepoint.com/vantage-point-wordpress-and-woocomerce-plugin/
 Description: Friendly fraud protection using online video recordings with user metadata.
-Version: Version: 1.0.0
+Version: Version: 1.0.1
 Author: Vantage Point
 Author URI: http://www.getvantagepoint.com
 License: GPL2
@@ -63,12 +63,12 @@ function VantagePoint_insert_script () {
 		<script type="text/javascript">
 		var _vantage = _vantage || [];
 		var WebsiteID = ' .  $vantage_id . ';
-		(function() {
-	    var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
-		ga.src = "https://s1.getvantagepoint.com/app/framework/js/application.js";
+		var pluginUrl = "' . plugins_url() . '";
+		pluginUrl += "/VantagePoint/assets/js/browsers.js";
+		var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async=true;
+		ga.src = pluginUrl;
 		var s = document.getElementsByTagName("script")[0]; 
 		s.parentNode.insertBefore(ga, s);
-	  })();
 	</script>' . "";
 } 
 	
