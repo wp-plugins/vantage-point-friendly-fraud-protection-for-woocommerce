@@ -54,7 +54,7 @@ function VantagePoint_insert_script () {
 	$result     = $wpdb->get_row("SELECT * from  $table_name limit 1");
 	$vantage_id = $result->vantage_id;
 	$vantage_seal = $result->vantage_seal;             
-	$vantage_seal_image = '<div style="max-width:128px;	max-height:63px; margin:30px auto;" ><a href="#" onClick="window.open('."'".'https://s1.getvantagepoint.com/verified/index.php?id='.$vantage_id."'".', '."'".'newwindow'."'".', '."'".'width=620, height=430,scrollbars=yes'."'".'); return false;" rel="nofollow" title="print"><img src="'. plugins_url("/assets/images/vp_seal" .$vantage_seal. ".png" ,  __FILE__) .'" border="0"></a></div>';
+	$vantage_seal_image = '<div style="max-width:128px;	max-height:63px; margin:30px auto;" ><a href="#" onClick="window.open('."'".'https://s1.getvantagepoint.com/verified/verified.html?id='.$vantage_id."'".', '."'".'newwindow'."'".', '."'".'width=620, height=430,scrollbars=yes'."'".'); return false;" rel="nofollow" title="print"><img src="'. plugins_url("/assets/images/vp_seal" .$vantage_seal. ".png" ,  __FILE__) .'" border="0"></a></div>';
 	
 	if ($vantage_seal==0) { $vantage_seal_image=''; }
 
