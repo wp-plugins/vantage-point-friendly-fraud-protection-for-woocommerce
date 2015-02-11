@@ -4,7 +4,7 @@ Tags: friendly fraud, fraud, payment protection, vantage point, maxmind, maxmind
 Donate link: https://www.2checkout.com/checkout/purchase?sid=202346321&quantity=1&product_id=11
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
