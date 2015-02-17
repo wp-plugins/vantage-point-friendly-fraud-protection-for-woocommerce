@@ -4,7 +4,7 @@ Tags: friendly fraud, fraud, payment protection, vantage point, maxmind, maxmind
 Donate link: https://www.2checkout.com/checkout/purchase?sid=202346321&quantity=1&product_id=11
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -204,6 +204,13 @@ The videos will be marked for deletion which runs every 48 hours. We leave a two
 
 
 == Changelog ==
+
+= Version 1.0.2 =
+
+- Fixed a bug that caused sometimes recording issues
+- Fixed a bug that casued Invalid usernames or password errors
+
+
 
 = Version 1.0.1 =
 

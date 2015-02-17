@@ -3,7 +3,7 @@
 Plugin Name: Vantage Point
 Plugin URI: http://www.getvantagepoint.com/vantage-point-wordpress-and-woocomerce-plugin/
 Description: Friendly fraud protection using online video recordings with user metadata.
-Version: Version: 1.0.1
+Version: Version: 1.0.2
 Author: Vantage Point
 Author URI: http://www.getvantagepoint.com
 License: GPL2
@@ -54,7 +54,7 @@ function VantagePoint_insert_script () {
 	$result     = $wpdb->get_row("SELECT * from  $table_name limit 1");
 	$vantage_id = $result->vantage_id;
 	$vantage_seal = $result->vantage_seal;             
-	$vantage_seal_image = '<div style="max-width:128px;	max-height:63px; margin:30px auto;" ><a href="#" onClick="window.open('."'".'https://s1.getvantagepoint.com/verified/verified.html?id='.$vantage_id."'".', '."'".'newwindow'."'".', '."'".'width=620, height=430,scrollbars=yes'."'".'); return false;" rel="nofollow" title="print"><img src="'. plugins_url("/assets/images/vp_seal" .$vantage_seal. ".png" ,  __FILE__) .'" border="0"></a></div>';
+	$vantage_seal_image = '<div style="max-width:128px;	max-height:63px; margin:30px auto;" ><a href="#" onClick="window.open('."'".'https://s1.getvantagepoint.com/verified/verified.html?id='.$vantage_id."'".', '."'".'newwindow'."'".', '."'".'width=620, height=430,scrollbars=yes'."'".'); return false;" rel="nofollow" ><img src="'. plugins_url("/assets/images/vp_seal" .$vantage_seal. ".png" ,  __FILE__) .'" border="0" alt="VantagePoint Seal" /></a></div>';
 	
 	if ($vantage_seal==0) { $vantage_seal_image=''; }
 
@@ -140,7 +140,7 @@ function encrypt_decrypt($action, $string) {
 
 	global $wpdb;
 	$vantage_id = 0;
-	$version = "1.0.1";
+	$version = "1.0.2";
 	$table_name = $wpdb->prefix . 'vantagepoint';
 		
 	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'")==$table_name){ 
@@ -153,7 +153,7 @@ function encrypt_decrypt($action, $string) {
 	}	   
 		
 	if ($vantage_id!=0){
-		$session_data = wp_remote_get('http://www.getvantagepoint.com/wp_dashboard/visitors101.php?usr=' . $user_email . '&pwd='.$password."&api_key=".$api_key."&sec_key=".$sec_key."&version=".$version);  // send request to get the sessions data
+		$session_data = wp_remote_get('http://www.getvantagepoint.com/wp_dashboard/visitors102.php?usr=' . $user_email . '&pwd='.$password."&api_key=".$api_key."&sec_key=".$sec_key."&version=".$version);  // send request to get the sessions data
 		wp_enqueue_style( 'mystyle', plugins_url('/assets/css/style.css' ,  __FILE__) );
 		wp_enqueue_script( 'myscript', plugins_url('/assets/js/script.js',__FILE__));
 		print($session_data['body']);
