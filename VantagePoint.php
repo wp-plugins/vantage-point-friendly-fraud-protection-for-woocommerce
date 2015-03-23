@@ -3,7 +3,7 @@
 Plugin Name: Vantage Point
 Plugin URI: http://www.getvantagepoint.com/vantage-point-wordpress-and-woocomerce-plugin/
 Description: Friendly fraud protection using online video recordings with user metadata.
-Version: Version: 1.0.2
+Version: Version: 1.0.3
 Author: Vantage Point
 Author URI: http://www.getvantagepoint.com
 License: GPL2

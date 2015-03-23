@@ -4,7 +4,7 @@ Tags: friendly fraud, fraud, payment protection, vantage point, maxmind, maxmind
 Donate link: https://www.2checkout.com/checkout/purchase?sid=202346321&quantity=1&product_id=11
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -212,9 +212,20 @@ Using the power of crowd-sourcing where everyone contributes and everyone benefi
 
 1. Vantage Point Create Free Account after plugin is Activated
 2. Vantage Point Dashboard showing all recordings
+3. Customer Email Blacklist Checker
 
 
 == Changelog ==
+
+
+= Version 1.0.3 =
+
+- Added Customer email blacklist checking
+- Fixed issues regarding some CDN's (Content Delivery Networks)
+- Fixed Apple IOS 8.2 browser session capture
+
+
+
 
 = Version 1.0.2 =
 
