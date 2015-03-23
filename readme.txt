@@ -33,6 +33,7 @@ Free service includes:
 - Unlimited Viewing
 - Unlimited Sharing
 - Free forever 
+- Customer Email Blacklist 
 
 
 
@@ -73,6 +74,7 @@ Free service includes:
 - Unlimited Viewing
 - Unlimited Sharing
 - Free forever
+- Customer Email Blacklist 
 
 
 = Data Protection =
@@ -192,6 +194,15 @@ Sending an order confirmation after the sale is normal practice the issue is tha
 = What happens to the videos when I cancel my account? =
 
 The videos will be marked for deletion which runs every 48 hours. We leave a two day window in case you decide to reactivate your account.
+
+
+
+
+= What is the Customer email blacklist? =
+
+Using the power of crowd-sourcing where everyone contributes and everyone benefits online merchants can now search a dedicated database of email addresses. The database is always growing as merchants add bad customers to the database list. 
+
+
 
 
 
