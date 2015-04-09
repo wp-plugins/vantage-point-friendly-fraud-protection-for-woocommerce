@@ -14,7 +14,12 @@ function createVantageAccount() {
 		document.getElementById("validate").innerHTML = "Name should be 3 to 100 characters long.";
 		return false;
 		
-	} else if (email=='' || email.length<10 || length.email>150 || !email.indexOf("@") || !email.indexOf(".")){
+	} else if (email==''){
+		//alert ("Please enter valid email address");
+		document.getElementById("validate").innerHTML = "Please enter valid email address";
+		return false;
+		
+	} else if (email.indexOf('@') ==-1 || email.indexOf('.') ==-1){
 		//alert ("Please enter valid email address");
 		document.getElementById("validate").innerHTML = "Please enter valid email address";
 		return false;

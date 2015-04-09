@@ -4,7 +4,7 @@ Tags: friendly fraud, fraud, payment protection, vantage point, maxmind, maxmind
 Donate link: https://www.2checkout.com/checkout/purchase?sid=202346321&quantity=1&product_id=11
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.0.3
+Stable tag: 1.0.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -47,7 +47,7 @@ We are based on a freemium business model, the business is designed to have 98% 
 We hope that our free service will go a long way in combating friendly fraud.  Friendly fraud is increasing at alarming rates.  We believe a solution is needed for all online merchants, not just the paying few. 
 
 
-Free users are NOT required to subscribe to MaxMind's service, we are the scubscriber and hold the API Key for all Geo IP lookups.
+Free users are NOT required to subscribe to MaxMind's service, we are the subscriber and hold the API Key for all Geo IP lookups.
 
 
 
@@ -80,7 +80,7 @@ Free service includes:
 = Data Protection =
 
 
-The videos that are captured remain your property.  Upon cancellation of your account the videos will be permanently deleted. We do not use your data in any way.  We do not share your data with anyone.  We are not affiliated nor do we subscribe to any banner marketing or adsence like service. Our servers are PCI compliant and all usernames and passwords are encrypted.
+The videos that are captured remain your property.  Upon cancellation of your account the videos will be permanently deleted. We do not use your data in any way.  We do not share your data with anyone.  We are not affiliated nor do we subscribe to any banner marketing or adsense like service. Our servers are PCI compliant and all usernames and passwords are encrypted.
 
 
 = Get Involved =
@@ -167,7 +167,7 @@ There is no limitation on sharing.
 
 = Can the video be modified after it has been created? =
 
-No, the video cannot be modified. It records the actual screens and mouse movements key presses etc. This cannot be altered in anyway. 
+No, the video cannot be modified. It records the actual screens and mouse movement's key presses etc. This cannot be altered in anyway. 
 
 
 
@@ -218,6 +218,13 @@ Using the power of crowd-sourcing where everyone contributes and everyone benefi
 == Changelog ==
 
 
+= Version 1.0.4 =
+
+- Plugin Image not showing issues fixed in SSL wordpress admin
+- Fixed issue where websites have embedded images using inline css
+- Fixed conflict with Sharethis.com buttons
+
+
 = Version 1.0.3 =
 
 - Added Customer email blacklist checking
@@ -230,7 +237,7 @@ Using the power of crowd-sourcing where everyone contributes and everyone benefi
 = Version 1.0.2 =
 
 - Fixed a bug that caused sometimes recording issues
-- Fixed a bug that casued Invalid usernames or password errors
+- Fixed a bug that caused Invalid usernames or password errors
 
 
 
@@ -239,7 +246,7 @@ Using the power of crowd-sourcing where everyone contributes and everyone benefi
 - Updated Speed for capturing mouse data
 - Added Vantage Point Site Seal feature
 - Added robots blocking counter measure to stop robots from being recorded
-- More Secure API for conecting to database
+- More Secure API for connecting to database
 
 
 = Version 1.0.0 =
@@ -252,4 +259,4 @@ Using the power of crowd-sourcing where everyone contributes and everyone benefi
 
 == Upgrade Notice ==
 
-Existing users are all advised to update to this release as soon as possible as it has positive impact on your website performance due to the blocking of robots.
+Existing users are all advised to update to release as soon as possible as it has positive impact on your website performance due to the blocking of robots.

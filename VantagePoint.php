@@ -3,7 +3,7 @@
 Plugin Name: Vantage Point
 Plugin URI: http://www.getvantagepoint.com/vantage-point-wordpress-and-woocomerce-plugin/
 Description: Friendly fraud protection using online video recordings with user metadata.
-Version: Version: 1.0.3
+Version: Version: 1.0.4
 Author: Vantage Point
 Author URI: http://www.getvantagepoint.com
 License: GPL2
@@ -60,15 +60,15 @@ function VantagePoint_insert_script () {
 
 	echo ''.$vantage_seal_image.'
 	<input type="hidden" name="vantage_tracking" id="tracking_id" value="" />
-		<script type="text/javascript">
+		<script type="text/javascript">	
 		var _vantage = _vantage || [];
 		var WebsiteID = ' .  $vantage_id . ';
-		var pluginUrl = "' . plugins_url() . '";
-		pluginUrl += "/vantage-point-friendly-fraud-protection-for-woocommerce/assets/js/browsers.js";
-		var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async=true;
-		ga.src = pluginUrl;
-		var s = document.getElementsByTagName("script")[0]; 
-		s.parentNode.insertBefore(ga, s);
+		var vantagepoint_pluginUrl = "' . plugins_url() . '";
+		vantagepoint_pluginUrl += "/vantage-point-friendly-fraud-protection-for-woocommerce/assets/js/browsers.js";
+		var ga_vantage_container = document.createElement("script"); ga_vantage_container.type = "text/javascript"; ga_vantage_container.async=true;
+		ga_vantage_container.src = vantagepoint_pluginUrl;
+		var vantage_script = document.getElementsByTagName("script")[0]; 
+		vantage_script.parentNode.insertBefore(ga_vantage_container, vantage_script);
 	</script>' . "";
 } 
 	
@@ -140,7 +140,7 @@ function encrypt_decrypt($action, $string) {
 
 	global $wpdb;
 	$vantage_id = 0;
-	$version = "1.0.2";
+	$version = "1.0.4";
 	$table_name = $wpdb->prefix . 'vantagepoint';
 		
 	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'")==$table_name){ 
@@ -153,7 +153,7 @@ function encrypt_decrypt($action, $string) {
 	}	   
 		
 	if ($vantage_id!=0){
-		$session_data = wp_remote_get('http://www.getvantagepoint.com/wp_dashboard/visitors102.php?usr=' . $user_email . '&pwd='.$password."&api_key=".$api_key."&sec_key=".$sec_key."&version=".$version);  // send request to get the sessions data
+		$session_data = wp_remote_get('http://www.getvantagepoint.com/wp_dashboard/visitors104.php?usr=' . $user_email . '&pwd='.$password."&api_key=".$api_key."&sec_key=".$sec_key."&version=".$version);  // send request to get the sessions data
 		wp_enqueue_style( 'mystyle', plugins_url('/assets/css/style.css' ,  __FILE__) );
 		wp_enqueue_script( 'myscript', plugins_url('/assets/js/script.js',__FILE__));
 		print($session_data['body']);
@@ -550,6 +550,7 @@ if ($page==1){
 
 
 	$response=$response['body'];
+	if ($response != 0 && $response != '' && $response != -1) {
 	$response = explode ("|", $response);
 	$website_id = $response[0];
 	$api_key    = $response[1];	
@@ -585,6 +586,17 @@ if ($page==1){
 	<div class="txt_sub">We have successfully created<br/>your account. You will receive<br/>an email confirmation shortly.</div>
 	<center><input name="" value="Click here to finish setup" type="button" class="form_btn2" onclick="load_dashboard();" /></center>';
 	echo '</div>';	
+	
+	} else {
+		
+	echo '<div class="form_div" id="FinishedSignup"> 
+	<input type="hidden" name="gvp_response" id="gvp_response" />
+	<div class="txt_sub">Sorry there was a problem connecting to the server Please click here to </div>
+	<center><a href="'.$this_page.'"><input name="" value="try again" type="button" class="form_btn2" /></a></center>';
+	echo '</div>';
+		
+	}
+	
 }
 
 
