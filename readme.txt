@@ -3,7 +3,7 @@ Contributors: VantagePoint
 Tags: friendly fraud, fraud, payment protection, vantage point, maxmind, maxmind fraud protection, video recording, website recording, video evidence, woocommerce fraud, woocommerce, woocommerce fraud prevention, woo commerce,woo commerce fraud,
 Donate link: https://www.2checkout.com/checkout/purchase?sid=202346321&quantity=1&product_id=11
 Requires at least: 3.8
-Tested up to: 4.1
+Tested up to: 4.2
 Stable tag: 1.0.4
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
