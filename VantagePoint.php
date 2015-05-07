@@ -3,7 +3,7 @@
 Plugin Name: Vantage Point
 Plugin URI: http://www.getvantagepoint.com/vantage-point-wordpress-and-woocomerce-plugin/
 Description: Friendly fraud protection using online video recordings with user metadata.
-Version: Version: 1.0.4
+Version: Version: 2.0
 Author: Vantage Point
 Author URI: http://www.getvantagepoint.com
 License: GPL2
@@ -26,9 +26,10 @@ License: GPL2
 */
 ob_start();
 
-if ( is_admin() ){ 
+if (is_admin() && in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 	add_action( 'admin_menu', 'VantagePoint_menu' );
 	add_action( 'admin_init', 'VantagePoint_register' );
+	add_action( 'woocommerce_admin_order_data_after_order_details', 'display_vantage_data' );		
 	register_activation_hook( __FILE__,  'VantagePoint_activate' );
 }
 
@@ -36,6 +37,70 @@ if ( is_admin() ){
 function VantagePoint_menu() {
 	add_menu_page( 'Vantage Point', 'Vantage Point', 'manage_options', 'vantagepoint', 'VantagePoint_options' , plugins_url('/assets/images/icon.png' ,  __FILE__) );
 }
+
+
+
+function display_vantage_data( $order ){  
+
+	global $wpdb;
+	$vantage_id = 0;
+	$table_name = $wpdb->prefix . 'vantagepoint';
+	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'")==$table_name){ 
+		$result     = $wpdb->get_row("SELECT * from  $table_name limit 1");
+		$vantage_id = $result->vantage_id;
+		$user_email = $result->vantage_email;
+		$password   = $result->vantage_pwd;
+		$api_key    = $result->vantage_api_key;
+		$sec_key    = $result->vantage_sec_key;
+	}	   
+	
+	$order_date    = $order->order_date;
+	$billing_email = $order->billing_email;
+	$ip_address    = $order->customer_ip_address;
+	
+	$vp_add1  = $order->billing_address_1;
+	$vp_add2  = $order->billing_address_2;
+	$vp_country   = $order->billing_country;
+	$vp_city  = $order->billing_city;
+	
+	$vp_full_address = $vp_add1."|".$vp_add2."|".$vp_city."|".$vp_country;
+	
+	$url     = "http://www.getvantagepoint.com/wc_dashboard/vantage_order_detail.php";
+	$response = wp_remote_post(
+            $url,
+            array(
+                'body' => array(
+					'billing_email' => $billing_email,
+					'api_key' => $api_key,
+					'sec_key' => $sec_key,
+					'user_id' => $user_email,
+					'password' => $password,
+					'ip_address' => $ip_address,
+					'order_date' => $order_date,
+					'website_id' => $vantage_id,
+					'full_address'    => $vp_full_address
+                )
+            )
+        );
+
+	
+	if ( is_wp_error( $response )) return false;
+
+	$table = $response['body'];
+	
+	wp_enqueue_style( 'mystyle', plugins_url('/assets/css/style.css' ,  __FILE__) );
+	
+	echo '<script>
+			jQuery(function(){
+				jQuery("#woocommerce-order-items").before(\'<div class="metabox-holder"><div class="postbox"><h3>Vantage Point - Meta Data </h3><blockquote>' . preg_replace( '/[\n]*/is', '', str_replace( '\'', '\\\'', $table ) ) . '</blockquote></div></div>\');
+			});
+		</script>';
+
+
+}
+
+
+
 
 // registering sessings.
 function VantagePoint_register() { 
@@ -53,7 +118,8 @@ function VantagePoint_insert_script () {
 	$table_name = $wpdb->prefix . 'vantagepoint';
 	$result     = $wpdb->get_row("SELECT * from  $table_name limit 1");
 	$vantage_id = $result->vantage_id;
-	$vantage_seal = $result->vantage_seal;             
+	$vantage_seal = $result->vantage_seal;
+	$vantage_geoip = $result->vantage_geoip;             
 	$vantage_seal_image = '<div style="max-width:128px;	max-height:63px; margin:30px auto;" ><a href="#" onClick="window.open('."'".'https://s1.getvantagepoint.com/verified/verified.html?id='.$vantage_id."'".', '."'".'newwindow'."'".', '."'".'width=620, height=430,scrollbars=yes'."'".'); return false;" rel="nofollow" ><img src="'. plugins_url("/assets/images/vp_seal" .$vantage_seal. ".png" ,  __FILE__) .'" border="0" alt="VantagePoint Seal" /></a></div>';
 	
 	if ($vantage_seal==0) { $vantage_seal_image=''; }
@@ -63,6 +129,7 @@ function VantagePoint_insert_script () {
 		<script type="text/javascript">	
 		var _vantage = _vantage || [];
 		var WebsiteID = ' .  $vantage_id . ';
+		var vantage_geoip = ' .  $vantage_geoip. ';
 		var vantagepoint_pluginUrl = "' . plugins_url() . '";
 		vantagepoint_pluginUrl += "/vantage-point-friendly-fraud-protection-for-woocommerce/assets/js/browsers.js";
 		var ga_vantage_container = document.createElement("script"); ga_vantage_container.type = "text/javascript"; ga_vantage_container.async=true;
@@ -86,6 +153,7 @@ function VantagePoint_activate(){
 	  vantage_api_key varchar(25) DEFAULT NULL,
 	  vantage_sec_key varchar(25) DEFAULT NULL,	  
       vantage_seal tinyint(1) DEFAULT 0,
+	  vantage_geoip tinyint(1) DEFAULT 1,
 	  vantage_status tinyint(1) DEFAULT 0,
       UNIQUE KEY vantage_id (vantage_id)
     );";
@@ -140,7 +208,7 @@ function encrypt_decrypt($action, $string) {
 
 	global $wpdb;
 	$vantage_id = 0;
-	$version = "1.0.4";
+	$version = "2.0";
 	$table_name = $wpdb->prefix . 'vantagepoint';
 		
 	if($wpdb->get_var("SHOW TABLES LIKE '$table_name'")==$table_name){ 
@@ -153,7 +221,7 @@ function encrypt_decrypt($action, $string) {
 	}	   
 		
 	if ($vantage_id!=0){
-		$session_data = wp_remote_get('http://www.getvantagepoint.com/wp_dashboard/visitors104.php?usr=' . $user_email . '&pwd='.$password."&api_key=".$api_key."&sec_key=".$sec_key."&version=".$version);  // send request to get the sessions data
+		$session_data = wp_remote_get('http://www.getvantagepoint.com/wp_dashboard/visitors200.php?usr=' . $user_email . '&pwd='.$password."&api_key=".$api_key."&sec_key=".$sec_key."&version=".$version);  // send request to get the sessions data
 		wp_enqueue_style( 'mystyle', plugins_url('/assets/css/style.css' ,  __FILE__) );
 		wp_enqueue_script( 'myscript', plugins_url('/assets/js/script.js',__FILE__));
 		print($session_data['body']);
@@ -282,6 +350,43 @@ $rows_affected = $wpdb->query(
 	}
 	
 	
+}
+
+
+if ($page==7){
+		$website_id = $_POST['website_id'];
+		$vp_geoip = $_POST['vantage_geoip'];	
+		
+	$url     = "http://s1.getvantagepoint.com/app/framework/wp_geoip.php";
+	$response = wp_remote_post(
+            $url,
+            array(
+                'body' => array(
+					'website_id'    => $website_id,
+					'vp_geoip'    => $vp_geoip
+                )
+            )
+        );
+	$response=$response['body']; 
+	
+	if ($response!=0) {
+			
+		$tablename = $wpdb->prefix . "vantagepoint";	
+		$rows_affected = $wpdb->query(
+									  $wpdb->prepare("
+													 UPDATE {$tablename}
+													 SET  vantage_geoip = %s
+													 WHERE vantage_id = $website_id;",
+													 $vp_geoip
+													 )
+									  );		
+		header('Location: #');	
+		
+	} else {
+		
+		header('Location: ?dfgfg');	
+		
+	}
 }
 
 		

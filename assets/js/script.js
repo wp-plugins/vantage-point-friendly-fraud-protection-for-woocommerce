@@ -139,3 +139,16 @@ function btn_radio(a) {
 		document.getElementById("sel_img").src= "http://www.getvantagepoint.com/wp_dashboard/images/vp_seal"+a+".png";
 		document.getElementById("img_id").innerHTML = a;
 }
+
+
+/*BlackList*/
+
+function blacklists(ids){	
+	document.getElementById(ids).style.display='block';	
+}
+
+function black_off(ids){	
+	document.getElementById(ids).style.display='none';
+	
+}
+/*BlackList*/

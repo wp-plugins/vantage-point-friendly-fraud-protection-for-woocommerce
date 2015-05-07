@@ -221,6 +221,15 @@
         padding-bottom:20px;
 }
 
+.vp_geoip
+{
+        width:998px;
+        min-height:100px;
+		font-size:22px;
+        border:1px solid #000;
+        margin-top:30px;
+}
+
 
 .db_txt_1
 {
@@ -266,6 +275,16 @@
         font-size:19px;
         text-decoration:none;
 }
+.db_txt_4
+{
+        color:#363636;
+        font-family:"Lato-Light";
+        font-size:22px;
+        line-height:50px;
+        font-weight:600;
+        margin:5px 0px 0px 20px;
+}
+
 .welcome
 {
         width:690px;
@@ -297,6 +316,12 @@
         height:55px;
         background-color:#ccc;
 }
+.geoip_div
+{
+        width:100%;
+        height:55px;
+        background-color:#fff;
+}
 .record_count
 {
         width:220px;
@@ -323,6 +348,11 @@
         color:#333;
         font-size:15px;
         line-height:40px;
+}
+.user_txt a
+{
+        color:#333;
+		text-decoration:none;
 }
 .user_txt:hover
 {
@@ -487,6 +517,172 @@ input[type=radio]:not(old):checked + label{
 }
 
 
+
+/*Black List*/
+
+.clear {
+	clear:both;
+}
+.black_box
+{
+	width:683px;
+	max-height:445px;
+	background-color:#d2eeff;
+	padding-bottom:20px;
+	margin-bottom:30px;
+}
+
+.black_menu
+{
+	width:170px;
+	height:31px;
+	font-family:"Lato-Light";
+	font-weight:600;
+	font-size:20px;
+	color:#fff;
+	text-align:center;
+	padding-top:15px;
+	margin-right:1px;
+	background-color:#35b1ff;
+	border-radius:8px 8px 0px 0px;
+	float:left;
+}
+.black_menu a
+{
+	color:#fff;
+	text-decoration:none;
+}
+
+
+	
+
+.history
+{
+	width:655px;
+	max-height:400px;
+	font-family:"Lato-Light";
+	color:#000;
+	font-size:16px;
+	margin:0px auto;
+	padding-top:0px;
+	overflow:auto;
+}
+
+.comments_btn
+{
+    width:135px; 
+	height:27px;
+	border:1px solid #FFF;
+	color:#000;
+	font-family:"Lato-Light";  
+	font-size:16px; 
+	background:#8cd4ff;
+	border-radius:6px; 
+	cursor:pointer;
+	outline:none;
+	margin:5px 0px 0px 10px;
+}
+.comments_close
+{
+    width:80px; 
+	height:27px;
+	border:1px solid #FFF;
+	color:#000;
+	font-family:"Lato-Light";  
+	font-size:16px; 
+	background:#8cd4ff;
+	border-radius:6px; 
+	cursor:pointer;
+	outline:none;
+	margin:5px 0px 0px 0px;
+}
+
+.comment_box
+{
+	width:440px;
+	max-height:180px;
+	font-family:"Lato-Light";
+	font-size:16px;
+	color:#000;
+	padding:10px;
+	background-color:#fff;
+	border:1px solid #b7b7b7;
+	border-radius:8px;
+	background-color:f2f2f2;
+	overflow:auto;
+	margin:10px 0px 10px 0px;
+}
+
+/*Black List*/
+
+.vantage_div1
+{
+	width:440px; height:512px;
+	border:1px solid #CCC;
+	float:left;
+}
+.vantage_div2
+{
+	width:440px; height:512px;
+	border:1px solid #CCC;
+	float:left;
+}
+.vantage_div3
+{
+	width:440px; height:512px;
+	border:1px solid #CCC;
+	float:left;
+}
+.vp_data1
+{
+	width:400px;
+	height:56px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#000000;
+	background-color:#FFFFFF;
+	border-bottom:1px solid #CCC;
+	display: table-cell;
+	padding:0px 20px 0px 20px;
+    vertical-align: middle;
+	float:none;
+}
+.vp_metadata_info
+{
+	margin:0px 0px 0px 10px;
+	font-size:12px;
+	cursor:pointer;
+}
+
+
+@media screen and (max-width: 1200px) {
+
+.vantage_div1
+{
+	width:440px; height:512px;
+	border:1px solid #CCC;
+	float:none;
+}
+.vantage_div2
+{
+	width:440px; height:512px;
+	border-top:none;
+	border-bottom:1px solid #CCC;
+	border-left:1px solid #CCC;
+	border-right:1px solid #CCC;
+	float:none;
+}
+.vantage_div3
+{
+	width:440px; height:512px;
+	border-top:none;
+	border-bottom:1px solid #CCC;
+	border-left:1px solid #CCC;
+	border-right:1px solid #CCC;
+	float:none;
+}
+
+}
 
 
 
