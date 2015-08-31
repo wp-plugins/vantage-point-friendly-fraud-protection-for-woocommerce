@@ -225,7 +225,7 @@ function VantagePoint_insert_script () {
 		var WebsiteID = ' .  $vantage_id . ';
 		var vantage_geoip = ' .  $vantage_geoip. ';
 		var vantagepoint_pluginUrl = "' . plugins_url() . '";
-		vantagepoint_pluginUrl += "/vantagepoint/assets/js/browsers.js"; 
+		vantagepoint_pluginUrl += "/vantage-point-friendly-fraud-protection-for-woocommerce/assets/js/browsers.js"; 
 		var ga_vantage_container = document.createElement("script"); ga_vantage_container.type = "text/javascript"; ga_vantage_container.async=true;
 		ga_vantage_container.src = vantagepoint_pluginUrl;
 		var vantage_script = document.getElementsByTagName("script")[0]; 
